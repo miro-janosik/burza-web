@@ -23,6 +23,9 @@
   $Predaj = "23.10. - 03.11.";
   $Vyzdvihnutie = "06.11. - 10.11.";
   $Likvidacia = "13.11.2017";
+
+  require 'db.php';
+
   ###########################
   date_default_timezone_set('Europe/Bratislava');
   require_once '_smarty/Smarty.class.php';
