@@ -180,6 +180,7 @@
                                             <label>Veľkosť</label>
                                             <select name="velkost" class="form-control">
 																								<option value="x" style="font-weight:bold">Vyber veľkosť</option>
+																								<option {if isset($Velkost) && $Velkost == 0}selected{/if} value="0">Iné</option>
 																								<option {if isset($Velkost) && $Velkost == 1}selected{/if} value="1">Textil: 50 - 56, novorodenec</option>
                                                 <option {if isset($Velkost) && $Velkost == 2}selected{/if} value="2">Textil: 62 - 68, 3 - 6 mesiacov</option>
                                                 <option {if isset($Velkost) && $Velkost == 3}selected{/if} value="3">Textil: 74, 6 - 9 mesiacov</option>

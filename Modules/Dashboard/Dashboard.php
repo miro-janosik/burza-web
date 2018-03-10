@@ -86,7 +86,7 @@ echo "-->";
 		###
 		$error = false;
     if($Nahadzovanie === 2){
-      if(@$_POST['velkost'] < 1 || @$_POST['velkost'] > 37){
+      if(@$_POST['velkost'] < 0 || @$_POST['velkost'] > 37){
         $error[] = "CHYBNA-VELKOST";
         $smarty->assign('ERRVELKOST', true);
       }
@@ -176,7 +176,7 @@ echo "-->";
 			#######################################################
 			$error = false;
       if($Nahadzovanie === 2){
-        if(@$_POST['velkost'] < 1 || @$_POST['velkost'] > 37){
+        if(@$_POST['velkost'] < 0 || @$_POST['velkost'] > 37){
           $error[] = "CHYBNA-VELKOST";
           $smarty->assign('ERRVELKOST', true);
         }
@@ -320,6 +320,7 @@ echo "-->";
     $PocetNedodanych = 0;
     foreach($rows AS $row) {
 			$PocetDokopy++;
+			if($row['Velkost'] == 0) $row['Velkost'] = "Iné";
 			if($row['Velkost'] == 1) $row['Velkost'] = "50 - 56, novorodenec";
 			if($row['Velkost'] == 2) $row['Velkost'] = "62 - 68, 3 - 6 mesiacov";
 			if($row['Velkost'] == 3) $row['Velkost'] = "74, 6 - 9 mesiacov";
