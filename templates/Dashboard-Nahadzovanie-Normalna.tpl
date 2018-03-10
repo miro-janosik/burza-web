@@ -42,68 +42,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-						
-						 <div class="row">
-							<div class="col-lg-12">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<b>Štatistika pridaných položiek</b>
-									</div>
-									<!-- /.panel-heading -->
-									<div class="panel-body">
-										<div class="col-lg-3 col-md-6">
-											<div class="panel panel-danger">
-												<div class="panel-heading">
-													<div class="row">
-														<div class="col-xs-3">
-															<i class="fa fa-eur fa-5x"></i>
-														</div>
-														<div class="col-xs-9 text-right">
-															<div>{$PocetDokopy} veci za celkovo</div>
-															<div class="huge">{$VsetkyCelkom} €</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-md-6">
-												<div class="panel panel-danger">
-														<div class="panel-heading">
-																<div class="row">
-																		<div class="col-xs-3">
-																				<i class="fa fa-eur fa-5x"></i>
-																		</div>
-																		<div class="col-xs-9 text-right">
-																				<div>Potenciálna provízia (15%)</div>
-																				<div class="huge">{$MoznaProvizia} €</div>
-																		</div>
-																</div>
-														</div>
-												</div>
-										</div>
-										<div class="col-lg-3 col-md-6">
-											<div class="panel panel-danger">
-													<div class="panel-heading">
-															<div class="row">
-																	<div class="col-xs-3">
-																			<i class="fa fa-eur fa-5x"></i>
-																	</div>
-																	<div class="col-xs-9 text-right">
-																			<div>Potenciálny zisk</div>
-																			<div class="huge">{$MoznyZisk} €</div>
-																	</div>
-															</div>
-													</div>
-											</div>
-										</div>	
-									</div>
-									<!-- /.panel-body -->
-								</div>
-								<!-- /.panel -->
-							</div>
-							<!-- /.col-lg-12 -->
-            </div>
-						
+            
 						<!-- Uzivatelske data -->
 						<div class="row" id="UserData">
 							<div class="col-lg-12">
@@ -330,6 +269,71 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+
+            <!-- statistika -->
+						 <div class="row">
+							<div class="col-lg-12">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<b>Štatistika pridaných položiek</b>
+									</div>
+									<!-- /.panel-heading -->
+									<div class="panel-body">
+										<div class="col-lg-3 col-md-6">
+											<div class="panel panel-danger">
+												<div class="panel-heading">
+													<div class="row">
+														<div class="col-xs-3">
+															<i class="fa fa-eur fa-5x"></i>
+														</div>
+														<div class="col-xs-9 text-right">
+															<div>{$PocetDokopy} veci za celkovo</div>
+															<div class="huge">{$VsetkyCelkom} €</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- 
+										<div class="col-lg-3 col-md-6">
+												<div class="panel panel-danger">
+														<div class="panel-heading">
+																<div class="row">
+																		<div class="col-xs-3">
+																				<i class="fa fa-eur fa-5x"></i>
+																		</div>
+																		<div class="col-xs-9 text-right">
+																				<div>Potenciálna provízia (15%)</div>
+																				<div class="huge">{$MoznaProvizia} €</div>
+																		</div>
+																</div>
+														</div>
+												</div>
+										</div>
+										<div class="col-lg-3 col-md-6">
+											<div class="panel panel-danger">
+													<div class="panel-heading">
+															<div class="row">
+																	<div class="col-xs-3">
+																			<i class="fa fa-eur fa-5x"></i>
+																	</div>
+																	<div class="col-xs-9 text-right">
+																			<div>Potenciálny zisk</div>
+																			<div class="huge">{$MoznyZisk} €</div>
+																	</div>
+															</div>
+													</div>
+											</div>
+										</div>	
+										--> 
+									</div>
+									<!-- /.panel-body -->
+								</div>
+								<!-- /.panel -->
+							</div>
+							<!-- /.col-lg-12 -->
+            </div>
+            <!-- koniec statistika -->
             <!-- /.row -->
             
         </div>

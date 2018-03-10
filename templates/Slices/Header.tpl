@@ -51,12 +51,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/Dashboard">{$Nadpis} - {$Name} - Poradové číslo: {$ID}</a>
+                <a class="navbar-brand" href="/Dashboard">{$Nadpis} - {$Name} - Kód: {$Info} - Poradové číslo: {$ID}</a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                    <div><p><a href="/Logout" class="btn btn-danger btn-xs">Odhlásiť sa</a></p></div>
+                    <div><p><a href="/Logout" class="btn btn-danger btn-xs"><b>Odhlásiť sa</b></a></p></div>
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
