@@ -24,6 +24,8 @@ require_once '_smarty/Smarty.class.php';
 	$smarty->force_compile = true;
 
 require_once 'strings.php';
+	
+//	$debug = 'yes'; if (isset($debug)) @$smarty->assign('debug', $debug);
 
   //pripojim sa do db
   $link = mysqli_connect('127.0.0.1', 'XXXX', 'XXXX', 'bbk_burza');
@@ -44,6 +46,16 @@ require_once 'strings.php';
     if($key > 0) $RequestURI[$key] = $RequestURI[$key-1].'/'.$RequestURI[$key];
   }
   unset($value);
+
+  if (isset($debug))
+	{
+echo "<!-- Debug:";
+if (count($RequestURI) > 0) echo " RequestURI[0]: " . $RequestURI[0] ;
+if (count($RequestURI) > 1) echo " RequestURI[1]: " . $RequestURI[1] ;
+if (count($RequestURI) > 2) echo " RequestURI[2]: " . $RequestURI[2] ;
+echo "-->";
+	}
+
   //print_r($RequestURI);
   //die();
   ##################################################

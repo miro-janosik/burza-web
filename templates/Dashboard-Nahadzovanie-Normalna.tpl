@@ -2,6 +2,28 @@
 
 {include file="Slices/Header.tpl"}
 
+{if isset($debug)}
+	<!-- Debug: 
+ Pridaj: {if isset($Pridaj)} {$Pridaj} {/if}
+ EditID: {if isset($EditID)} {$EditID} {/if}
+ ID: {if isset($ID)} {$ID} {/if}
+ Name: {if isset($Name)} {$Name} {/if}
+ Mail: {if isset($Mail)} {$Mail} {/if}
+ Kontakt: {if isset($Kontakt)} {$Kontakt} {/if}
+ MoznyZisk: {if isset($MoznyZisk)} {$MoznyZisk} {/if}
+ MoznaProvizia: {if isset($MoznaProvizia)} {$MoznaProvizia} {/if}
+ VsetkyCelkom: {if isset($VsetkyCelkom)} {$VsetkyCelkom} {/if}
+ Popis: {if isset($Popis)} {$Popis} {/if}
+ ERRPOPIS: {if isset($ERRPOPIS)} {$ERRPOPIS} {/if}
+ Cena: {if isset($Cena)} {$Cena} {/if}
+ ERRCENA: {if isset($ERRCENA)} {$ERRCENA} {/if}
+ Velkost: {if isset($Velkost)} {$Velkost} {/if}
+ ERRVELKOST: {if isset($ERRVELKOST)} {$ERRVELKOST} {/if}
+ Cislo: {if isset($Cislo)} {$Cislo} {/if}
+ ERRCISLO: {if isset($ERRCISLO)} {$ERRCISLO} {/if}
+	-->
+{/if}
+
         <div id="page-wrapper">
 						<!-- /.row -->
             <div class="row">
