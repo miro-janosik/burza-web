@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>MC Baba Klub - Burza - {$Name} - Poradové číslo: {$ID}</title>
+    <title>{$Nadpis} - {$Name} - Poradové číslo: {$ID}</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/content/css/bootstrap.min.css" rel="stylesheet">
@@ -51,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/Dashboard">MC Baba Klub - Burza - {$Name} - Poradové číslo: {$ID}</a>
+                <a class="navbar-brand" href="/Dashboard">{$Nadpis} - {$Name} - Poradové číslo: {$ID}</a>
             </div>
             <!-- /.navbar-header -->
 

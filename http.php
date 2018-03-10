@@ -12,34 +12,19 @@
   $Nahadzovanie = false; #vypnute
   ###
   $IDBurzy = 15;
-  #$Nadpis = "Burza jarného a letného detského oblečenia 2017";
-  $Nadpis = "Burza tehotenského a novorodeneckého oblečenia 2017";
-  #$Nadpis = "Burza jesenného a zimného detského oblečenia 2017";
-  #$Podstata = "Na burze sa predáva jarné a letné detské oblečenie do veľkosti 164 (vrátane), športové a iné potreby.";
-  $Podstata = "Na burze sa predáva tehotenské a novorodenecké oblečenie do veľkosti 74 (vrátane), potreby s tým súvisiace.";
-  #$Podstata = "Na burze sa predáva jesenné a zimné detské oblečenie do veľkosti 164 (vrátane), športové a iné potreby.";
-  $Prihadzovanie = "09.10. - 15.10.";
-  $Zber = "16.10. - 20.10.";
-  $Predaj = "23.10. - 03.11.";
-  $Vyzdvihnutie = "06.11. - 10.11.";
-  $Likvidacia = "13.11.2017";
 
   require 'db.php';
 
   ###########################
   date_default_timezone_set('Europe/Bratislava');
-  require_once '_smarty/Smarty.class.php';
+
+require_once '_smarty/Smarty.class.php';
   $smarty = new Smarty;
 	$smarty->caching = false;
 	$smarty->force_compile = true;
-	#
-  @$smarty->assign('Nadpis', $Nadpis);
-  @$smarty->assign('PrihadzovanieDatumy', $Prihadzovanie);
-  @$smarty->assign('ZberDatumy', $Zber);
-  @$smarty->assign('PredajDatumy', $Predaj);
-  @$smarty->assign('VyzdvihnutieDatumy', $Vyzdvihnutie);
-  @$smarty->assign('LikvidaciaDatum', $Likvidacia);
-  @$smarty->assign('Podstata', $Podstata);
+
+require_once 'strings.php';
+
   //pripojim sa do db
   $link = mysqli_connect('127.0.0.1', 'XXXX', 'XXXX', 'bbk_burza');
 	if (!mysqli_set_charset($link, "utf8")) {
@@ -77,12 +62,12 @@
     header('Location: '.$HostnamePort.'Login');
     die();
   }
-	##################################################
-	#Volna sekcia
-	if($RequestURI[0] == 'Rules') {
+  ##################################################
+  #Volna sekcia
+  if($RequestURI[0] == 'Rules') {
     require_once 'Modules/Rules.php';
   }
-	if($RequestURI[0] == 'Oprava') {
+  if($RequestURI[0] == 'Oprava') {
     require_once 'Modules/Oprava.php';
 		die();
   }

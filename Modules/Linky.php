@@ -65,14 +65,15 @@
 		mysqli_stmt_execute($stmt);
 		$ID = mysqli_stmt_insert_id($stmt);
 		#die("<b>ID: $ID</b>");
-		$LoginStr = 'http://burza.babaklub.sk/Login/'.$LoginStr;
-		#
+		$LoginStr = $my_web."/Login/".$LoginStr;
+		
+
 		// To send HTML mail, the Content-type header must be set
 		$headers  = 'MIME-Version: 1.0' . "\r\n";
 		$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 		// Additional headers
-		$headers .= 'From: MC Baba Klub - Burza <Burza@BabaKlub.sk>' . "\r\n";
-		$headers .= 'Bcc: burza@babaklub.sk' . "\r\n";
+		$headers .= 'From: '.$my_name.' - Burza <'.$my_mail.'>' . "\r\n";
+		$headers .= 'Bcc: '.$my_mail."\r\n";
 		#
 		$to      = $Mail;
 		#
@@ -111,13 +112,7 @@ ktorými si predávané vecičky označíte. Nezabudnite o burze povedať aj Va�
 		pre.cjk { font-family: "Droid Sans Fallback", monospace }
 	-->
 	</style>
-<pre class="western">Ing. Kristína Krásna
-<i>predsedníčka</i>
-MC Baba klub o.z.
-Obilná 2
-93101 Šamorín
-E <a class="moz-txt-link-abbreviated" href="mailto:babaklub@babaklub.sk">babaklub@babaklub.sk</a>
-M +421 908 578 040</pre>
+<pre class="western"><?php echo $my_contact; ?></pre>
 <pre class="western" style="margin-bottom: 0.2in"></pre>
     </div>
   </body>
