@@ -131,9 +131,9 @@ ktorými si predávané vecičky označíte. Nezabudnite o burze povedať aj Va�
     die("Nieeeeeeeeeeeee...");
   }else{
     mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+		$rows = dbGetAllRowsArrayOfArrays($stmt);
 		echo '<table border="0" cellspacing="10"><tr><th>ID</th><th>Name</th><th>Mail</th><th>Tel</th><th>Provizia</th><th>Login</th><th>Zoznam</th>';
-    while($row = mysqli_fetch_assoc($result)){
+		foreach($rows AS $row) {
 			echo "<tr><td>";
 			echo $row['ID'];
 			echo "</td><td>";

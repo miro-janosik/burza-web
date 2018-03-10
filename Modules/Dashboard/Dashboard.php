@@ -155,8 +155,7 @@
 			}else{
 				mysqli_stmt_bind_param($stmt, "ii", $_SESSION["LoggedIn"]['ID'], $RequestURIsingle[1]);
 				mysqli_stmt_execute($stmt);
-				$result = mysqli_stmt_get_result($stmt);
-				$row = mysqli_fetch_assoc($result);
+				$row = dbGetSingleRowAsArray($stmt);
 				$row['Cena'] = sprintf("%.2f", $row['Cena']);
 				$row['Cena'] = @str_replace('.',',',$row['Cena']);
 				#
@@ -212,7 +211,7 @@
 			mysqli_stmt_bind_param($stmt, "d", $_SESSION["LoggedIn"]['ID']);
 		}
     mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+    $rows = dbGetAllRowsArrayOfArrays($stmt);
 		$NepredaneCelkom = 0;
 		$PredaneCelkom = 0;
     $VsetkyCelkom = 0;
@@ -221,7 +220,7 @@
 		$PocetPredanych = 0;
 		$PocetNepredanych = 0;
     $PocetNedodanych = 0;
-    while($row = mysqli_fetch_assoc($result)){
+    foreach($rows AS $row) {
 			$PocetDokopy++;
 			if($row['Velkost'] == 1) $row['Velkost'] = "50 - 56, novorodenec";
 			if($row['Velkost'] == 2) $row['Velkost'] = "62 - 68, 3 - 6 mesiacov";
