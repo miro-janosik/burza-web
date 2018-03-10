@@ -1,5 +1,15 @@
 <?php
 	#print_r($_SESSION); die();
+
+  if (isset($debug))
+	{
+echo "<!-- Debug:";
+if (count($RequestURI) > 0) echo " RequestURI[0]: " . $RequestURI[0] ;
+if (count($RequestURI) > 1) echo " RequestURI[1]: " . $RequestURI[1] ;
+if (count($RequestURI) > 2) echo " RequestURI[2]: " . $RequestURI[2] ;
+echo "-->";
+	}
+
 	##################
 	if(@$RequestURI[0] == 'Pridaj'){
 		$_SESSION["Pridaj"] = true;
@@ -15,6 +25,10 @@
 	##################
 	@$smarty->assign('Name', $_SESSION["LoggedIn"]['Name']);
 	@$smarty->assign('ID', $_SESSION["LoggedIn"]['ID']);
+	@$smarty->assign('Info', $_SESSION["LoggedIn"]['info']);
+	@$smarty->assign('Mail', $_SESSION["LoggedIn"]['Mail']);
+	@$smarty->assign('Kontakt', $_SESSION["LoggedIn"]['Kontakt']);
+
   ##################
   if(@$_POST['Save']){
 		###

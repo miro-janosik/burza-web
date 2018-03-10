@@ -104,6 +104,61 @@
 							<!-- /.col-lg-12 -->
             </div>
 						
+						<!-- Uzivatelske data -->
+						<div class="row" id="UserData">
+							<div class="col-lg-12">
+								
+								
+								<div class="panel-group" id="accordion">
+									<div class="panel 
+									{if (empty($Name)) || (empty($Mail)) || (empty($Kontakt))} panel-danger {else} panel-default {/if}
+									">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseUserData"><b>
+												{if (empty($Name)) || (empty($Mail)) || (empty($Kontakt))}!! Prosím vyplňťe !! - kliknite sem - {/if}
+												Moje údaje</b></a>
+											</h4>
+										</div>
+										<div id="collapseUserData" class="panel-collapse collapse">
+											<div class="panel-body">
+												
+												<form role="form" action="SaveUser/#UserData" method="post" class="form-horizontal" >
+														<div class="form-group">
+																<label class="control-label col-sm-2">Meno</label>
+																<div class="col-sm-10"><input value="{$Name}" name="Name" maxlength="80" type="text" class="form-control" placeholder="Vaše meno a priezvisko"></div>
+																{if empty($Name)}<div class="alert alert-danger"><b>Nevyplnené políčko!</b></div>{/if}
+														</div>
+														
+														<div class="form-group">
+																<label class="control-label col-sm-2">Kontakt</label>
+																<div class="col-sm-10"><input value="{$Kontakt}" name="Kontakt" maxlength="80" type="text" class="form-control" placeholder="Váš telefón alebo iný kontakt"></div>
+																{if empty($Kontakt)}<div class="alert alert-danger"><b>Nevyplnené políčko!</b></div>{/if}
+														</div>
+														
+														<div class="form-group">
+																<label class="control-label col-sm-2">E-Mail</label>
+																<div class="col-sm-10"><input value="{$Mail}" name="Email" maxlength="80" type="text" class="form-control" placeholder="meno@niekde.sk"></div>
+																{if empty($Mail)}<div class="alert alert-danger"><b>Nevyplnené políčko!</b></div>{/if}
+														</div>
+														
+														<div class="form-group">
+															<div class="col-sm-offset-2 col-sm-10">
+																<button name="Save" type="submit" value="Save" class="btn btn-success">Ulož</button>
+															</div>
+														</div>
+													</form>
+											
+											
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div><!-- /.col-lg-12 -->
+						</div>
+            <!-- /Uzivatelske data -->            
+						
             <!-- PRIDAJ POLOZKU -->
 						{if $Pridaj}
             <div class="row">
@@ -213,7 +268,7 @@
 {/if}
 							
 							
-                <div class="col-lg-12">
+                <div class="col-lg-9">
                     <div class="panel panel-default">
                         <div class="panel-heading">
 													<b>Zoznam položiek</b>

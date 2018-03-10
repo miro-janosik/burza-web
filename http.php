@@ -120,6 +120,8 @@ echo "-->";
     require_once 'Modules/Zoznam.php';
   }elseif($RequestURI[0] == 'Stitky'){
     require_once 'Modules/Stitky.php';
+  }elseif($RequestURI[0] == 'SaveUser'){
+    require_once 'Modules/SaveUser.php';
   }else{
     header('Location: '.$HostnamePort.'Dashboard');
   }
