@@ -26,6 +26,7 @@ M +421 908 184 747';
 
   $text_DatabaseProblem = "Problém s databázou...";
   $text_DatabaseProblemPrepare = "Problém s databázou... (prepare)";
+  $text_DatabaseProblem_InsertUser = "Vloženie užívateľa do databázy neúspešné!";
 
   @$smarty->assign('Nadpis', $Nadpis);
   @$smarty->assign('PrihadzovanieDatumy', $Prihadzovanie);

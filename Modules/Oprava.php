@@ -17,7 +17,7 @@
 	##############################################################################
   $stmt = mysqli_stmt_init($link);
   if(!mysqli_stmt_prepare($stmt, $query)){
-    die("Nieeeeeeeeeeeee...");
+    die("mysqli_stmt_prepare error oprava.1...");
   }
 	mysqli_stmt_execute($stmt);
 	$result = mysqli_stmt_get_result($stmt);
@@ -38,7 +38,7 @@
 		$Xquery = "UPDATE `Polozky` SET `Cislo` = ?, `Opravene` = '1' WHERE `UserID` = ? AND `Cena` = ? AND `Druh` = ? AND `Popis` = ?";
 		$Xstmt = mysqli_stmt_init($link);
 		if(!mysqli_stmt_prepare($Xstmt, $Xquery)){
-			die("moj ty kokot2!\n");
+			die("mysqli_stmt_prepare error oprava.2!\n");
 		}
 		mysqli_stmt_bind_param($Xstmt, "sidss", $row['ID'], $user, $cena, $druh, $opis);
 		mysqli_stmt_execute($Xstmt);

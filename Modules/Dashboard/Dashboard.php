@@ -151,7 +151,7 @@
 			$query = "SELECT * FROM `Polozky` WHERE `UserID` = ? AND `ID` = ?  AND `IDBurzy` = '".$IDBurzy."'";
 			$stmt = mysqli_stmt_init($link);
 			if(!mysqli_stmt_prepare($stmt, $query)){
-				die("Nieeeeeeeeeeeee...");
+				die($text_DatabaseProblemPrepare);
 			}else{
 				mysqli_stmt_bind_param($stmt, "ii", $_SESSION["LoggedIn"]['ID'], $RequestURIsingle[1]);
 				mysqli_stmt_execute($stmt);
@@ -205,7 +205,7 @@
 	#}
   $stmt = mysqli_stmt_init($link);
   if(!mysqli_stmt_prepare($stmt, $query)){
-    die("Nieeeeeeeeeeeee...");
+    die($text_DatabaseProblemPrepare);
   }else{
 		if($_SESSION["LoggedIn"]['ID'] != 0){
 			mysqli_stmt_bind_param($stmt, "d", $_SESSION["LoggedIn"]['ID']);

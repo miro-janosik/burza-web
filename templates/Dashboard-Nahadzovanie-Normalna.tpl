@@ -36,25 +36,7 @@
 						<!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-									<div class="panel-group" id="accordion">
-											<div class="panel panel-default">
-													<div class="panel-heading">
-															<h4 class="panel-title">
-																<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><b>Pre informácie a pravidlá burzy klikni sem.</b></a>
-															</h4>
-													</div>
-													<div id="collapseTwo" class="panel-collapse collapse">
-														<div class="panel-body">
-															<p class="lead">My Vám zoznam aj štítky vytlačíme, <b>netreba nič tlačiť ani označovať.</b><br>
-															Do burzy nebude možné dodatočne pridať položky, ktoré nie sú vo Vašom zozname.<br><br>
-															<b>Harmonogram burzy</b></p>
-														<div class="table-responsive">
-															{include file="Slices/Harmonogram.tpl"}
-														</div>
-														<p><a class="btn btn-info btn-lg" href="/Rules">Pravidlá burzy</a></p>
-														</div>
-													</div>
-											</div>
+									{include file="Slices/Informacie.tpl"}
 									</div>
                 </div>
                 <!-- /.col-lg-12 -->

@@ -59,7 +59,7 @@
 		$query = "INSERT INTO `Users` SET `LoginStr` = ?, `Name` = ?, `Mail` = ?, `Kontakt` = ?, `Provizia` = ?";
 		$stmt = mysqli_stmt_init($link);
 		if(!mysqli_stmt_prepare($stmt, $query)){
-			die("moj ty kokot2!\n");
+			die($text_DatabaseProblem_InsertUser);
 		}
 		mysqli_stmt_bind_param($stmt, "ssssi", $LoginStr, $Meno, $Mail, $Tel, $Provizia);
 		mysqli_stmt_execute($stmt);
@@ -145,9 +145,9 @@ ktorými si predávané vecičky označíte. Nezabudnite o burze povedať aj Va�
 			echo "</td><td>";
 			echo $row['Provizia'];
 			echo "</td><td>";
-			echo '<a href="http://burza.babaklub.sk/Login/'.$row['LoginStr'].'">http://burza.babaklub.sk/Login/'.$row['LoginStr'].'</a>';
+			echo '<a href="'.$my_web .'/Login/'.$row['LoginStr'].'">'.$my_web.'/Login/'.$row['LoginStr'].'</a>';
 			echo "</td><td>";
-			echo '<a href="http://burza.babaklub.sk/Zoznam/'.$row['ID'].'">ZOZNAM</a>';
+			echo '<a href="'.$my_web.'/Zoznam/'.$row['ID'].'">ZOZNAM</a>';
 			echo "</td></tr>";
     }
 		echo "</table>";
