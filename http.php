@@ -86,6 +86,12 @@
     require_once 'Modules/Oprava.php';
 		die();
   }
+
+  if($RequestURI[0] == 'LoginCode'){
+    require_once 'Modules/Login/LoginCode.php';
+    die();
+  }
+
   ##################################################
   # Ak nie je nikto prihlaseny a nie sme na /login, skocime tam
   if(@!$_SESSION["LoggedIn"] && $RequestURI[0] != 'Login'){

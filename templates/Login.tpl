@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>MC Baba Klub - Burza</title>
+    <title>{$Nadpis}</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/content/css/bootstrap.min.css" rel="stylesheet">
@@ -35,14 +35,37 @@
 <body>
 
     <div class="container">
+				<div class="row">
+					{include file="Slices/Informacie.tpl"}
+				</div>
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
+{if isset($PrihlasenieZlyhalo)}
+                <div class="login-panel panel panel-danger">
+{else}
                 <div class="login-panel panel panel-default">
+{/if}
                     <div class="panel-heading">
-                        <h3 class="panel-title">Prihlasenie nutne!</h3>
+                        <h3 class="panel-title">
+{if isset($PrihlasenieZlyhalo)}
+													Prihlásenie zlyhalo, pravdepodobne nesprávny kód...
+{else}
+													Prihlasenie nutne!
+{/if}
+												</h3>
                     </div>
                     <div class="panel-body">
-                        <p><b>MC Baba Klub - Burza</b><br /><br />Na prihlasenie sa pouzite poskytnutu prihlasovaciu linku!<br /><br /></p>
+                        <p><b>{$Nadpis}</b><br /><br />
+
+                        <!-- Na prihlasenie sa pouzite poskytnutu prihlasovaciu linku! -->
+                        
+                        <form action="/LoginCode/">
+                            Prihlasovací kód: <input type="text" name="code" placeholder="AB-CDE" />
+                            <center><input type="submit" value="Prihlásiť" /></center>
+                        
+                        </form>
+                        <br /><br />
+                        </p>
                     </div>
                 </div>
             </div>
