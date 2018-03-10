@@ -57,7 +57,6 @@ CREATE TABLE IF NOT EXISTS `Polozky` (
   `Pridane` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `Vytlacene` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `Cislo` (`Cislo`,`IDBurzy`),
   UNIQUE KEY `BarCodeUnique` (`BarCode`),
   UNIQUE KEY `BCwS` (`BarCodeWSUM`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=21166 ;
@@ -94,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `isActive` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `LoginStr` (`LoginStr`),
-  UNIQUE KEY `Mail` (`Mail`)
+
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=145 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

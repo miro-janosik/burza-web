@@ -1,6 +1,44 @@
 <?php
 	#print_r($_SESSION); die();
 
+	# find if there are any other items with the same number
+# returns true if duplicate found
+function getPossibleDuplicateNumber($link, $userId, $cislo, $itemId = -1)
+{
+	$query = "SELECT `ID` FROM `Polozky` WHERE `UserID` = $userId AND `Cislo` = $cislo AND `ID` != $itemId";
+	$stmt = mysqli_stmt_init($link);
+	if (!mysqli_stmt_prepare($stmt, $query))
+		die("getPossibleDuplicateNumber prepare '$query'");
+	if (!mysqli_stmt_execute($stmt))
+		die("getPossibleDuplicateNumber execute '$query'");
+	return (dbGetSingleRowAsArray($stmt) != null);
+}
+
+# returns (items).max number + 1
+function getNextGoodNumber($link, $userId)
+{
+	$query = "SELECT `Cislo` FROM `Polozky` WHERE `UserID` = $userId ORDER BY CAST(`Cislo` AS INT) DESC LIMIT 1";
+	$stmt = mysqli_stmt_init($link);
+	if (!mysqli_stmt_prepare($stmt, $query))
+		die("getNextGoodNumber prepare '$query'");
+	if (!mysqli_stmt_execute($stmt))
+		die("getNextGoodNumber execute '$query'");
+	$num = 1;
+	$row = dbGetSingleRowAsArray($stmt);
+	if ($row != null)
+	{
+		$num = $row['Cislo'];
+		if (!is_numeric($num))
+		{
+			$num = 0;
+		}
+		
+		$num++;
+	}
+	
+	return $num;
+}
+
   if (isset($debug))
 	{
 echo "<!-- Debug:";
@@ -28,7 +66,19 @@ echo "-->";
 	@$smarty->assign('Info', $_SESSION["LoggedIn"]['info']);
 	@$smarty->assign('Mail', $_SESSION["LoggedIn"]['Mail']);
 	@$smarty->assign('Kontakt', $_SESSION["LoggedIn"]['Kontakt']);
-
+	
+	{
+		# what would be a good next number for item?
+		$userId = $_SESSION["LoggedIn"]['ID'];
+		$num = getNextGoodNumber($link, $userId);
+		if (isset($debug))
+		{
+	echo "<!-- Debug: getNextGoodNumber: $num -->";
+		}
+		
+		@$smarty->assign('Cislo', $num);
+	}
+	
   ##################
   if(@$_POST['Save']){
 		###
@@ -62,21 +112,37 @@ echo "-->";
 			$smarty->assign('ERRPOPIS', true);
     }
 		
+		if (@!is_numeric($_POST['cislo'])){
+			$error[] = "CHYBNE-CISLO";
+			$smarty->assign('ERRCISLO', true);
+		}
+		else
+		{
+			$num = $_POST['cislo'];
+			if (($num < 1) || getPossibleDuplicateNumber($link, 
+				$_SESSION["LoggedIn"]['ID'], $num, -1))
+			{
+				$error[] = "CHYBNE-CISLO";
+				$smarty->assign('ERRCISLO', true);
+			}
+		}
+		
 		if($error){
 			@$smarty->assign('Velkost', @$_POST['velkost']);
 			@$smarty->assign('Cena', @$_POST['cena']);
 			@$smarty->assign('Druh', @$_POST['druh']);
 			@$smarty->assign('Popis', @$_POST['popis']);
+			@$smarty->assign('Cislo', @$_POST['cislo']);
 		}else{
 			# Vlozime vysledky do db
       #$query = "INSERT INTO `Polozky` SET `UserID` = ?, `Cena` = ?, `Druh` = ?, `Popis` = ?, `Velkost` = ?";
-      $query = "INSERT INTO `Polozky` SET `UserID` = ?, `Cena` = ?, `Popis` = ?, `Velkost` = ?";
+      $query = "INSERT INTO `Polozky` SET `UserID` = ?, `Cena` = ?, `Popis` = ?, `Velkost` = ?, `Cislo` = ?";
       $stmt = mysqli_stmt_init($link);
       if(!mysqli_stmt_prepare($stmt, $query)){
         die("moj ty kokot2!\n");
       }
       #mysqli_stmt_bind_param($stmt, "idssi", $_SESSION["LoggedIn"]['ID'], $_POST['cena'], $_POST['druh'], $_POST['popis'], $_POST['velkost']);
-      mysqli_stmt_bind_param($stmt, "idsi", $_SESSION["LoggedIn"]['ID'], $_POST['cena'], $_POST['popis'], $_POST['velkost']);
+      mysqli_stmt_bind_param($stmt, "idsii", $_SESSION["LoggedIn"]['ID'], $_POST['cena'], $_POST['popis'], $_POST['velkost'], $_POST['cislo']);
       mysqli_stmt_execute($stmt);
 			header('Location: '.$HostnamePort.'Dashboard');
 			die();
@@ -135,24 +201,40 @@ echo "-->";
 				$error[] = "CHYBNY-POPIS";
 				$smarty->assign('ERRPOPIS', true);
 			}
+			
+			if (@!is_numeric($_POST['cislo'])){
+				$error[] = "CHYBNE-CISLO";
+				$smarty->assign('ERRCISLO', true);
+			}
+			else
+			{
+				if (getPossibleDuplicateNumber(
+					$link,
+					$_SESSION["LoggedIn"]['ID'], $_POST['cislo'], $RequestURIsingle[1]))
+				{
+					$error[] = "CHYBNE-CISLO";
+					$smarty->assign('ERRCISLO', true);
+				}
+			}
 
 			if($error){
 				@$smarty->assign('Velkost', @$_POST['velkost']);
 				@$smarty->assign('Cena', @$_POST['cena']);
 				@$smarty->assign('Druh', @$_POST['druh']);
 				@$smarty->assign('Popis', @$_POST['popis']);
+				@$smarty->assign('Cislo', @$_POST['cislo']);
 				@$smarty->assign('Pridaj', true);
 				@$smarty->assign('EditID', $RequestURIsingle[1]);
 				
 			}else{
 				# Vlozime vysledky do db
- 			  $query = "UPDATE `Polozky` SET `Cena` = ?, `Popis` = ?, `Velkost` = ? WHERE `UserID` = ? AND `ID` = ?  AND `IDBurzy` = '".$IDBurzy."' AND `Vytlacene` < 1";
+ 			  $query = "UPDATE `Polozky` SET `Cena` = ?, `Popis` = ?, `Velkost` = ?, `Cislo` = ? WHERE `UserID` = ? AND `ID` = ?  AND `IDBurzy` = '".$IDBurzy."' AND `Vytlacene` < 1";
 				$stmt = mysqli_stmt_init($link);
 				if(!mysqli_stmt_prepare($stmt, $query)){
 					die("moj ty kokot2!\n");
 				}
 				#mysqli_stmt_bind_param($stmt, "dssiii", $_POST['cena'], $_POST['druh'], $_POST['popis'], $_POST['velkost'], $_SESSION["LoggedIn"]['ID'], $RequestURIsingle[1]);
- 				mysqli_stmt_bind_param($stmt, "dsiii", $_POST['cena'], $_POST['popis'], $_POST['velkost'], $_SESSION["LoggedIn"]['ID'], $RequestURIsingle[1]);
+ 				mysqli_stmt_bind_param($stmt, "dsiiii", $_POST['cena'], $_POST['popis'], $_POST['velkost'], $_POST['cislo'], $_SESSION["LoggedIn"]['ID'], $RequestURIsingle[1]);
 				mysqli_stmt_execute($stmt);
 				$_SESSION["Pridaj"] = false;
 				header('Location: '.$HostnamePort.'Dashboard');
@@ -179,6 +261,7 @@ echo "-->";
 				@$smarty->assign('Cena', @$row['Cena']);
 				//@$smarty->assign('Druh', @$row['Druh']);
 				@$smarty->assign('Popis', @$row['Popis']);
+				@$smarty->assign('Cislo', @$row['Cislo']);
 				@$smarty->assign('Pridaj', true);
 				@$smarty->assign('EditID', $RequestURIsingle[1]);
 			}
@@ -209,7 +292,8 @@ echo "-->";
 	if($_SESSION["LoggedIn"]['ID'] == 0){
 		$query .= " ORDER BY `ID` DESC";
 	}else{
-		$query .= " AND `UserID` = ? ORDER BY `ID` DESC";
+		#$query .= " AND `UserID` = ? ORDER BY `ID` DESC";
+		$query .= " AND `UserID` = ? ORDER BY CAST(`Cislo` AS INT) ASC";
 	}
 	#$query = "SELECT * FROM `Polozky`";
 	#if($_SESSION["LoggedIn"]['ID'] == 0){
@@ -304,6 +388,7 @@ echo "-->";
 			$row['Cena'] = @str_replace('.',',',$row['Cena']);
 			$row['Druh'] = htmlspecialchars($row['Druh']);
 			$row['Popis'] = htmlspecialchars($row['Popis']);
+			$row['Cislo'] = $row['Cislo'];
 			##############
       $Checks[] = $row;
     }

@@ -161,7 +161,7 @@
 						
             <!-- PRIDAJ POLOZKU -->
 						{if $Pridaj}
-            <div class="row">
+            <div class="row" id="pridaj">
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -170,7 +170,12 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <form role="form" action="{if isset($EditID)}/Edit/{$EditID}{else}/Dashboard{/if}" method="post">
+                                    <form role="form" action="{if isset($EditID)}/Edit/{$EditID}/#pridaj{else}/Dashboard/#pridaj{/if}" method="post">
+                                        <div class="form-group{if isset($ERRCISLO)} has-error{/if}">
+                                            <label>Číslo</label>
+                                            <input {if isset($Cislo)}value="{$Cislo}"{/if} name="cislo" maxlength="6" type="text" class="form-control" placeholder="Napríklad 1">
+																						{if isset($ERRCISLO)}<div class="alert alert-danger"><b>Chybne zadané číslo!</b></div>{/if}
+                                        </div>
                                         <div class="form-group{if isset($ERRVELKOST)} has-error{/if}">
                                             <label>Veľkosť</label>
                                             <select name="velkost" class="form-control">
@@ -229,7 +234,7 @@
 																				<button name="SaveEdit" type="submit" value="SaveEdit" class="btn btn-warning">Zmeň položku</button>
 																				{else}
                                         <button name="Save" type="submit" value="Save" class="btn btn-success">Pridaj položku</button>
-																				<a href="/Skry" class="btn btn-warning">Zavri tento formulár bez pridania</a>
+																				<a href="/Skry#zoznam" class="btn btn-warning">Zavri tento formulár bez pridania</a>
 																				{/if}
                                     </form>
                                 </div>
@@ -248,8 +253,8 @@
             <div class="row">
 							
 							
-							<a href="/Pridaj" class="abbk">
-                    <div class="col-lg-3 col-md-6">
+							<a href="/Pridaj#pridaj" class="abbk">
+                    <div class="col-lg-3">
                         <div class="panel panel-green">
                             <div class="panel-heading">
                                 <div class="row">
@@ -270,7 +275,7 @@
 							
                 <div class="col-lg-9">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
+                        <div class="panel-heading" id="zoznam">
 													<b>Zoznam položiek</b>
                         </div>
                         <!-- /.panel-heading -->
@@ -281,6 +286,7 @@
                                     <thead>
                                         <tr>
                                             <th>Akcia</th>
+                                            <th>Číslo</th>
                                             <th>Cena</th>
                                             <th>Veľkosť</th>
                                             <th>Popis</th>
@@ -289,7 +295,23 @@
                                     <tbody>
           {foreach from=$Polozky key=k item=v}
             <tr class="odd gradeX">
-							<td>{if $ID === 0}(ID Predajkine: {$v['UserID']})<b>{$v['Cislo']}</b> &nbsp; &nbsp; {if $v['Predane'] === 1}<b>PREDANÉ</b>{else}<a href="/Predane/{$v['ID']}" class="btn btn-danger btn-xs">Predane</a>{/if}{else}{if $v['Predane'] === 1}<b>{$v['Cislo']} PREDANÉ</b>{else}{$v['Cislo']} <a href="/Delete/{$v['ID']}" class="btn btn-danger btn-xs">Zmazať</a> <a href="/Edit/{$v['ID']}" class="btn btn-warning btn-xs">Upraviť</a>{/if}{/if}</td>
+							<td>
+						{if $ID === 0}
+							(ID Predajkine: {$v['UserID']})<b>{$v['Cislo']}</b> &nbsp; &nbsp; 
+							{if $v['Predane'] === 1}
+								<b>PREDANÉ</b>
+							{else}
+								{$v['Cislo']} <a href="/Predane/{$v['ID']}" class="btn btn-danger btn-xs">Predane</a>
+							{/if}
+						{else}
+							{if $v['Predane'] === 1}
+								<b>PREDANÉ</b>
+							{else}
+								<a href="/Delete/{$v['ID']}" class="btn btn-danger btn-xs">Zmazať</a> &nbsp; &nbsp;
+								<a href="/Edit/{$v['ID']}/#pridaj" class="btn btn-warning btn-xs">Upraviť</a>
+							{/if}
+						{/if}</td>
+								<td>{$v['Cislo']} </td>
                 <td>{$v['Cena']} €</td>
                 <td>{$v['Velkost']}</td>
                 <td>{$v['Popis']}</td>
