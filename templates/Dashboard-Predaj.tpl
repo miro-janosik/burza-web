@@ -11,39 +11,64 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-						<!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-									<div class="panel-group" id="accordion">
-											<div class="panel panel-default">
-													<div class="panel-heading">
-															<h4 class="panel-title">
-																<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><b>Pre informácie a pravidlá burzy klikni sem.</b></a>
-															</h4>
-													</div>
-													<div id="collapseTwo" class="panel-collapse collapse">
-														<div class="panel-body">
-                              <p class="lead">My Vám zoznam aj štítky vytlačíme, <b>netreba nič tlačiť ani označovať.</b><br>
-                              Do burzy nebude možné dodatočne pridať položky, ktoré nie sú vo Vašom zozname.<br><br>
-                              <b>Harmonogram burzy</b></p>
-                            <div class="table-responsive">
-															{include file="Slices/Harmonogram.tpl"}
-														</div>
-														<p><a class="btn btn-info btn-lg" href="/Rules">Pravidlá burzy</a></p>
-														</div>
-													</div>
-											</div>
+									{include file="Slices/Informacie.tpl"}
 									</div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+
+
+			<!-- Zoznam poloziek -->
             <!-- /.row -->
-						
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+													<b>Zoznam položiek</b>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            {if isset($Polozky)}
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Číslo</th>
+                                            <th>Cena</th>
+                                            <th>Veľkosť</th>
+                                            <th>Popis</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+          {foreach from=$Polozky key=k item=v}
+            <tr class="odd gradeX {if $v['Predane'] === 1}success{else}{if $v['Naskladnene'] !== 1}danger{/if}{/if}">
+				<td>{$v['Cislo']}</td>
+                <td>{$v['Cena']} €</td>
+                <td>{$v['Velkost']}</td>
+                <td>{$v['Popis']}</td>
+            </tr>  
+          {/foreach}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {else}<p><b>Zatial ziadne</b></p>{/if}
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+
+            <!-- statistika -->
 						 <div class="row">
 							<div class="col-lg-12">
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<b>Štatistika už predaných položiek</b>
+										<b>Štatistika pridaných položiek</b>
 									</div>
 									<!-- /.panel-heading -->
 									<div class="panel-body">
@@ -55,14 +80,14 @@
 															<i class="fa fa-eur fa-5x"></i>
 														</div>
 														<div class="col-xs-9 text-right">
-															<div>Aktuálne predaných {$PocetPredanych} vecí za</div>
-															<div class="huge">{$PredaneCelkom} €</div>
-                              <div>Zatiaľ nepredaných {$PocetNepredanych} za {$NepredaneCelkom} €</div>
+															<div>{$PocetDokopy} veci za celkovo</div>
+															<div class="huge">{$VsetkyCelkom} €</div>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
+										<!-- 
 										<div class="col-lg-3 col-md-6">
 												<div class="panel panel-default">
 														<div class="panel-heading">
@@ -94,7 +119,8 @@
 															</div>
 													</div>
 											</div>
-										</div>
+										</div>	
+										--> 
 									</div>
 									<!-- /.panel-body -->
 								</div>
@@ -103,6 +129,8 @@
 							<!-- /.col-lg-12 -->
             </div>
                                   
+			<!-- Legenda -->
+			<!-- 
             <div class="row">
                 <div class="col-lg-12">
 									<div class="panel-group" id="accordion">
@@ -137,50 +165,11 @@
 											</div>
 									</div>
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.col-lg-12 - ->
             </div>
-            <!-- /.row -->
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-													<b>Zoznam položiek</b>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            {if isset($Polozky)}
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th>Cena</th>
-                                            <th>Veľkosť</th>
-                                            <th>Popis</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-          {foreach from=$Polozky key=k item=v}
-            <tr class="odd gradeX {if $v['Predane'] === 1}success{else}{if $v['Naskladnene'] !== 1}danger{/if}{/if}">
-                <td>{$v['Cena']} €</td>
-                <td>{$v['Velkost']}</td>
-                <td>{$v['Popis']}</td>
-            </tr>  
-          {/foreach}
-                                    </tbody>
-                                </table>
-                            </div>
-                            {else}<p><b>Zatial ziadne</b></p>{/if}
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <!-- /.row -->
-            
+            <!-- /.row - ->
+			-->
+
         </div>
         <!-- /#page-wrapper -->
         
