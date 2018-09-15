@@ -28,6 +28,10 @@
                         <div class="panel-heading">
 													<b>Zoznam položiek</b>
                         </div>
+                        
+                        <!-- legenda -->
+                        Legenda: červené = nepredané. zelené = predané.
+                        
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             {if isset($Polozky)}

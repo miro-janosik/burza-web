@@ -133,7 +133,7 @@ Ak nebudú predávané veci označené spôsobom, ktorý spĺňa hore uvedené p
 													</ul>
                           <br/>
                           <br/>
-                          <img src="http://www.mcsrdiecko.sk/wp-content/uploads/2018/02/burza-03_2018_na-webFB.jpg" width="90%" />
+                          <img src="http://www.mcsrdiecko.sk/wp-content/uploads/2018/08/burza-10_2018_na-webFB.jpg" width="90%" />
                           
 
 														<p><br><a class="btn btn-info btn-lg" href="/">Späť</a></p>

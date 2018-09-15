@@ -139,7 +139,7 @@ echo "-->";
       $query = "INSERT INTO `Polozky` SET `UserID` = ?, `Cena` = ?, `Popis` = ?, `Velkost` = ?, `Cislo` = ?";
       $stmt = mysqli_stmt_init($link);
       if(!mysqli_stmt_prepare($stmt, $query)){
-        die("moj ty kokot2!\n");
+        die("Error on insert into Polozky!\n");
       }
       #mysqli_stmt_bind_param($stmt, "idssi", $_SESSION["LoggedIn"]['ID'], $_POST['cena'], $_POST['druh'], $_POST['popis'], $_POST['velkost']);
       mysqli_stmt_bind_param($stmt, "idsii", $_SESSION["LoggedIn"]['ID'], $_POST['cena'], $_POST['popis'], $_POST['velkost'], $_POST['cislo']);
@@ -231,7 +231,7 @@ echo "-->";
  			  $query = "UPDATE `Polozky` SET `Cena` = ?, `Popis` = ?, `Velkost` = ?, `Cislo` = ? WHERE `UserID` = ? AND `ID` = ?  AND `IDBurzy` = '".$IDBurzy."' AND `Vytlacene` < 1";
 				$stmt = mysqli_stmt_init($link);
 				if(!mysqli_stmt_prepare($stmt, $query)){
-					die("moj ty kokot2!\n");
+					die("Error on Update Polozky!\n");
 				}
 				#mysqli_stmt_bind_param($stmt, "dssiii", $_POST['cena'], $_POST['druh'], $_POST['popis'], $_POST['velkost'], $_SESSION["LoggedIn"]['ID'], $RequestURIsingle[1]);
  				mysqli_stmt_bind_param($stmt, "dsiiii", $_POST['cena'], $_POST['popis'], $_POST['velkost'], $_POST['cislo'], $_SESSION["LoggedIn"]['ID'], $RequestURIsingle[1]);
@@ -281,7 +281,7 @@ echo "-->";
 		$query = "UPDATE `Polozky` SET `Predane` = '1' WHERE `ID` = ?";
 		$stmt = mysqli_stmt_init($link);
 		if(!mysqli_stmt_prepare($stmt, $query)){
-			die("moj ty kokot2!\n");
+			die("Error on update Polozky!\n");
 		}
 		mysqli_stmt_bind_param($stmt, "i", $RequestURIsingle[1]);
 		mysqli_stmt_execute($stmt);
