@@ -60,13 +60,18 @@
                         <!-- Na prihlasenie sa pouzite poskytnutu prihlasovaciu linku! -->
                         
                         <form action="/LoginCode/">
-                            Prihlasovací kód: <input type="text" name="code" placeholder="AB-CDE" />
+                            <center>Prihlasovací kód: <input type="text" name="code" placeholder="AB-CDE" /></center>
                             <center><input type="submit" value="Prihlásiť" /></center>
                         
                         </form>
-                        <br /><br />
                         </p>
                     </div>
+
+                    <div class="panel-body">
+											{$GDPR}
+											<br/> <br/>
+										</div>
+
                 </div>
             </div>
         </div>

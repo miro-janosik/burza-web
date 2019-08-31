@@ -271,6 +271,31 @@
             </div>
             <!-- /.row -->
 
+            <!-- mazanie vsetkych veci -->
+            <div class="row">
+							<div class="col-lg-12">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<b>Zmazanie <a href="/ConfirmDeleteItems">všetkých položiek</a></b>
+									</div>
+								</div>
+							</div>
+            </div>
+
+
+						<!-- Informacny text -->
+
+            <div class="row">
+							<div class="col-lg-12">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<b>Informácia</b>
+									</div>
+									{$GDPR}
+								</div>
+							</div>
+            </div>            
+
             <!-- statistika -->
 						 <div class="row">
 							<div class="col-lg-12">
@@ -336,6 +361,8 @@
             </div>
             <!-- koniec statistika -->
             <!-- /.row -->
+
+            {if isset($Zmazanych)}Zmazanych $Zmazanych kusov.{/if}
             
         </div>
         <!-- /#page-wrapper -->

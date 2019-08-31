@@ -1,22 +1,61 @@
 <?php
 	#print_r($_SESSION); die();
 
-	# find if there are any other items with the same number
-# returns true if duplicate found
-function getPossibleDuplicateNumber($link, $userId, $cislo, $itemId = -1)
+$itemMaxNumber = 80;
+
+# find if number is correct.
+# - if there are any other items with the same number
+# - if number is too small or too big
+# returns true if number is correct
+function isItemNumberCorrect($link, $userId, $cislo, $itemId = -1)
 {
+	global $itemMaxNumber;
+
+	# check for duplicate
 	$query = "SELECT `ID` FROM `Polozky` WHERE `UserID` = $userId AND `Cislo` = $cislo AND `ID` != $itemId";
 	$stmt = mysqli_stmt_init($link);
 	if (!mysqli_stmt_prepare($stmt, $query))
-		die("getPossibleDuplicateNumber prepare '$query'");
+		die("isItemNumberCorrect prepare '$query'");
 	if (!mysqli_stmt_execute($stmt))
-		die("getPossibleDuplicateNumber execute '$query'");
-	return (dbGetSingleRowAsArray($stmt) != null);
+		die("isItemNumberCorrect execute '$query'");
+
+	if (dbGetSingleRowAsArray($stmt) != null)
+		return false;
+
+	# check for number, it should be in range 1 .. max
+	if ($cislo < 1)
+		return false;
+
+	# check max number, but leave existing items be if it carries the same number
+	if ($cislo > $itemMaxNumber)
+	{
+		if ($itemId == -1)
+			return false;
+
+		$query = "SELECT `Cislo` FROM `Polozky` WHERE `ID` = $itemId";
+		$stmt = mysqli_stmt_init($link);
+		if (!mysqli_stmt_prepare($stmt, $query))
+			die("isItemNumberCorrect prepare '$query'");
+		if (!mysqli_stmt_execute($stmt))
+			die("isItemNumberCorrect execute '$query'");
+
+		$row = dbGetSingleRowAsArray($stmt);
+		if ($row != null)
+		{
+			$num = $row['Cislo'];
+			if ($cislo != $num)
+				return false;
+		}
+	}
+
+	return true;
 }
 
 # returns (items).max number + 1
 function getNextGoodNumber($link, $userId)
 {
+	global $itemMaxNumber;
+
 	$query = "SELECT `Cislo` FROM `Polozky` WHERE `UserID` = $userId ORDER BY CAST(`Cislo` AS INT) DESC LIMIT 1";
 	$stmt = mysqli_stmt_init($link);
 	if (!mysqli_stmt_prepare($stmt, $query))
@@ -35,7 +74,11 @@ function getNextGoodNumber($link, $userId)
 		
 		$num++;
 	}
-	
+
+	# numbers are limitd
+	if ($num > $itemMaxNumber)
+		$num = $itemMaxNumber;	
+
 	return $num;
 }
 
@@ -119,8 +162,8 @@ echo "-->";
 		else
 		{
 			$num = $_POST['cislo'];
-			if (($num < 1) || getPossibleDuplicateNumber($link, 
-				$_SESSION["LoggedIn"]['ID'], $num, -1))
+			if (($num < 1) || 
+				!isItemNumberCorrect($link, $_SESSION["LoggedIn"]['ID'], $num, -1))
 			{
 				$error[] = "CHYBNE-CISLO";
 				$smarty->assign('ERRCISLO', true);
@@ -157,7 +200,7 @@ echo "-->";
     $query = "DELETE FROM `Polozky` WHERE `ID` = ? AND `UserID` = ? AND `IDBurzy` = '".$IDBurzy."' AND `Vytlacene` < 1";
     $stmt = mysqli_stmt_init($link);
     if(!mysqli_stmt_prepare($stmt, $query)){
-      die("mxxx!");
+      die("DELETE FROM Polozky prepare!");
     }else{
       mysqli_stmt_bind_param($stmt, "ii", $RequestURIsingle[1], $_SESSION["LoggedIn"]['ID']);
       mysqli_stmt_execute($stmt);
@@ -208,7 +251,7 @@ echo "-->";
 			}
 			else
 			{
-				if (getPossibleDuplicateNumber(
+				if (!isItemNumberCorrect(
 					$link,
 					$_SESSION["LoggedIn"]['ID'], $_POST['cislo'], $RequestURIsingle[1]))
 				{

@@ -10,19 +10,17 @@ Trenčín
 <a class="moz-txt-link-abbreviated" href="mailto:'.$my_mail.'">'.$my_mail.'</a>
 M +421 908 184 747';
 
-  #$Nadpis = "Burza jarného a letného detského oblečenia 2017";
-  $Nadpis = "MC Srdiečko - Jesenná burza 2018";
+  $Nadpis = "MC Srdiečko - Jesenná burza 2019";
+  @$smarty->assign('TypBurzy', "Jesenno-zimná burza");
+  @$smarty->assign('TypOsatenia', "jesenno-zimné ošatenie");
 
-  #$Nadpis = "Burza jesenného a zimného detského oblečenia 2017";
   #$Podstata = "Na burze sa predáva jarné a letné detské oblečenie do veľkosti 164 (vrátane), športové a iné potreby.";
-  #$Podstata = "Na burze sa predáva tehotenské a novorodenecké oblečenie do veľkosti 74 (vrátane), potreby s tým súvisiace.";
-  #$Podstata = "Na burze sa predáva jesenné a zimné detské oblečenie do veľkosti 164 (vrátane), športové a iné potreby.";
   $Podstata = "";
-  $Prihadzovanie = "17.9. - 24.10. 20:00";
-  $Zber = "27.10. 8:00 - 12:00";
-  $Predaj = "27.10. 15:00 - 19:00 a <br/>28.10. 9:00 - 12:00";
-  $Vyzdvihnutie = "28.10. 15:00 - 18:00";
-  $Likvidacia = "28.10.2018 po 18:00";
+  $Prihadzovanie = "1.9. - 26.9. 20:00";
+  $Zber = "28.9. 8:00 - 12:00";
+  $Predaj = "28.9. 15:00 - 19:00 a <br/>29.9. 9:00 - 12:00";
+  $Vyzdvihnutie = "29.9. 15:00 - 18:00";
+  $Likvidacia = "29.9. po 18:00";
 
   $text_DatabaseProblem = "Problém s databázou...";
   $text_DatabaseProblemPrepare = "Problém s databázou... (prepare)";
@@ -37,5 +35,17 @@ M +421 908 184 747';
   @$smarty->assign('Podstata', $Podstata);
   
   @$smarty->assign('Organizacia', $my_name);
+
+  $Text_GDPR = "
+V zmysle Nariadenia Európskeho parlamentu a Rady (EÚ) 2016/679 z 27.04.2016 o ochrane fyzických osôb 
+v súvislosti so spracúvaním osobných údajov a o voľnom pohybe týchto údajov a o zrušení smernice 95/46/ES 
+a zákona č. 18/2018 Z. z. o ochrane osobných údajov a o zmene a doplnení niektorých zákonov, dávam občianskemu 
+združeniu Materské centrum Srdiečko, so sídlom Hviezdoslavova 6, 911 01 Trenčín, IČO: 361 293 48 súhlas 
+na spracovanie osobnych udajov. Súhlasím, aby toto združenie spracúvalo takto poskytnuté osobné údaje 
+/meno, priezvisko, e-mail, telefónne číslo/, ktoré bližšie charakterizujú moju osobu v súlade s ustanovením 
+§ 2 zákona č. 18/2018 Z. z./ v jeho vlastnej evidencii pre účel evidencie predajcov detskej burzy 
+oblečenia a obuvy a ich informovanie o burze.";
+
+  @$smarty->assign('GDPR', $Text_GDPR);
 
 ?>

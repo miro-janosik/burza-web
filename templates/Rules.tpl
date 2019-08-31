@@ -86,7 +86,7 @@ Všetky hračky a veci s cenou nad 15 eur sa nepredávajú fyzicky (do herne ich
 														<li>{$Organizacia} za predávaný tovar a prípadné straty NERUČÍ. V prípade neprevzatia sa nepredané oblečenie a peniaze dňom {$LikvidaciaDatum} stávajú majetkom {$Organizacia}</li>
                           -->
                           
-<li>Jarno-letná burza dojčenského, detského, tehotenského ošatenia, obuvi, kočíkov, hračiek a iných potrieb pre deti  bude prebiehať nasledovne:</li>
+<li>{$TypBurzy} dojčenského, detského, tehotenského ošatenia, obuvi, kočíkov, hračiek a iných potrieb pre deti  bude prebiehať nasledovne:</li>
 														<div class="table-responsive">
 															{include file="Slices/Harmonogram.tpl"}
 														</div>
@@ -94,7 +94,7 @@ Všetky hračky a veci s cenou nad 15 eur sa nepredávajú fyzicky (do herne ich
 
 <li>Organizátor burzy žiada predávajúcich, aby dodržali časový harmonogram odovzdávania a preberania ošatenia a detských potrieb. </li>
 
-<li>Organizátor si vyhradzuje právo prebrať iba jarno-letné ošatenie, ktoré zodpovedá určitému štandardu a ostatné predávané artikle v obmedzenom počte  spolu 80 kusov na osobu. Každá vec predstavuje 1 kus. 
+<li>Organizátor si vyhradzuje právo prebrať iba {$TypOsatenia}, ktoré zodpovedá určitému štandardu a ostatné predávané artikle v obmedzenom počte  spolu 80 kusov na osobu. Každá vec predstavuje 1 kus. 
 Všetky veci musia byť funkčné, zašité, čisté, vyžehlené a označené.</li>
 
 <li>Organizátor si vyhradzuje právo neprebrať špinavé a poškodené  artikle.</li>
@@ -117,8 +117,8 @@ Ak nebudú predávané veci označené spôsobom, ktorý spĺňa hore uvedené p
 
 <li>Organizátor burzy OZ MC Srdiečko IČO: 361 293 48 sprostredkuje predaj tovaru za cenu určenú predávajúcim.</li>
 <li>Ponechá si :</li>
-<li>-odmenu vo výške 10% z predaných artiklov </li>
-<li>- manipulačný poplatok :</li> 
+<li>odmenu vo výške 10% z predaných artiklov </li>
+<li>manipulačný poplatok :</li> 
 
 <li>0,10 €  za každý kus ,ktorý prinesiete na predaj v cene do 15,00 €.</li>
 
@@ -133,7 +133,7 @@ Ak nebudú predávané veci označené spôsobom, ktorý spĺňa hore uvedené p
 													</ul>
                           <br/>
                           <br/>
-                          <img src="http://www.mcsrdiecko.sk/wp-content/uploads/2018/08/burza-10_2018_na-webFB.jpg" width="90%" />
+                          <!-- img src="http://www.mcsrdiecko.sk/wp-content/uploads/2018/08/burza-10_2018_na-webFB.jpg" width="90%" / -->
                           
 
 														<p><br><a class="btn btn-info btn-lg" href="/">Späť</a></p>

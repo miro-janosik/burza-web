@@ -7,9 +7,9 @@
   #########################
   session_start();
   ###########################
-  #$Nahadzovanie = 2; #normalna
+  $Nahadzovanie = 2; #normalna
   #$Nahadzovanie = 3; #tehotenska
-  $Nahadzovanie = false; #vypnute
+  # $Nahadzovanie = 0; #vypnute
   ###
   $IDBurzy = 15;
 
@@ -89,6 +89,11 @@ echo "-->";
     die();
   }
 
+  if($RequestURI[0] == 'ConfirmDeleteItems'){
+    require_once 'Modules/ConfirmDeleteItems.php';
+    die();
+  }
+
   ##################################################
   # Ak nie je nikto prihlaseny a nie sme na /login, skocime tam
   if(@!$_SESSION["LoggedIn"] && $RequestURI[0] != 'Login'){
@@ -106,7 +111,7 @@ echo "-->";
     header('Location: '.$HostnamePort.'Dashboard');
   }elseif($RequestURI[0] == 'Edit'){
     if($Nahadzovanie) require_once 'Modules/Dashboard/Dashboard.php';
-    header('Location: '.$HostnamePort.'Dashboard');
+    # Redirect nie, ukaz Dashboard aj s Edit fieldom cez include. header('Location: '.$HostnamePort.'Dashboard');
   }elseif($RequestURI[0] == 'Pridaj'){
     if($Nahadzovanie) require_once 'Modules/Dashboard/Dashboard.php';
     header('Location: '.$HostnamePort.'Dashboard');
