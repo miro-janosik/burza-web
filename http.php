@@ -27,15 +27,6 @@ require_once 'strings.php';
 	
 //	$debug = 'yes'; if (isset($debug)) @$smarty->assign('debug', $debug);
 
-  //pripojim sa do db
-  $link = mysqli_connect('127.0.0.1', 'XXXX', 'XXXX', 'bbk_burza');
-	if (!mysqli_set_charset($link, "utf8")) {
-		printf("Error loading character set utf8: %s\n", mysqli_error($link));
-	}
-  //overim, ci boli zadane hodnoty do oboch policok
-  if(!$link){
-    die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
-  }
   //
   // Pozrieme kde sme
   //

@@ -98,6 +98,25 @@
 						</div>
             <!-- /Uzivatelske data -->            
 						
+            {if isset($Zmazanych)}Zmazanych $Zmazanych kusov.{/if}
+            
+            {if isset($Chyba)}
+						
+						<div class="row" id="Chyba">
+							<div class="col-lg-12">
+								<div class="panel panel-danger">
+									<div class="panel-heading"> <h4 class="panel-title"> Chyba </h4> </div>
+										<div class="panel-body">
+											Nastala chyba: $Chyba.
+										</div>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
+						
+            {/if}
+						
             <!-- PRIDAJ POLOZKU -->
 						{if $Pridaj}
             <div class="row" id="pridaj">
@@ -271,17 +290,56 @@
             </div>
             <!-- /.row -->
 
-            <!-- mazanie vsetkych veci -->
-            <div class="row">
+            <!-- mazanie viacerych veci naraz -->
+
+						<div class="row" >
 							<div class="col-lg-12">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<b>Zmazanie <a href="/ConfirmDeleteItems">všetkých položiek</a></b>
+								
+								
+								<div class="panel-group" id="accordion">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseDeleteMultiple"><b>Zmazanie viacero položiek</b></a>
+											</h4>
+										</div>
+										<div id="collapseDeleteMultiple" class="panel-collapse collapse">
+											<div class="panel-body">
+												
+												
+												<form role="form" action="/ConfirmDeleteItems" method="post" class="form-horizontal" >
+														<div class="form-group">
+															<label class="control-label col-sm-4">Zmazanie všetých položiek</label>
+															<div class="col-sm-offset-2 col-sm-4">
+																<div class="col-sm-4"><input value="ALL" name="ItemsToDelete" type="hidden" ></div>
+																<button name="DeleteAll" type="submit" value="DeleteAll" class="btn btn-warning">Zmazanie všetkých položiek</button>
+															</div>
+														</div>
+												</form>
+												
+												<br/><br/>
+												
+												<form role="form" action="/ConfirmDeleteItems" method="post" class="form-horizontal" style="display: none">
+
+														<div class="form-group">
+																<label class="control-label col-sm-4">Poradové čísla vecí (oddelené medzerou alebo čiarkou)</label>
+																<div class="col-sm-4"><input value="" name="ItemsToDelete" maxlength="140" type="text" class="form-control" placeholder="5,7, 22 36 50"></div>
+																<div class="col-sm-2">
+																	<button name="DeleteSelected" type="submit" value="DeleteSelected" class="btn btn-warning">Zmazanie popísaných položiek</button>
+																</div>
+														</div>
+														
+												</form>
+											
+											
+											</div>
+										</div>
 									</div>
 								</div>
-							</div>
-            </div>
-
+								
+							</div><!-- /.col-lg-12 -->
+						</div>
+       
 
 						<!-- Informacny text -->
 
@@ -361,8 +419,6 @@
             </div>
             <!-- koniec statistika -->
             <!-- /.row -->
-
-            {if isset($Zmazanych)}Zmazanych $Zmazanych kusov.{/if}
             
         </div>
         <!-- /#page-wrapper -->

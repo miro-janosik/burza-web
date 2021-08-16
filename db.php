@@ -3,16 +3,25 @@
 error_reporting(E_ALL);
 ini_set('display_errors',1);
 
-// Helper functions that return rows after calls:
-// $stmt = mysqli_stmt_init($link);
-// if(!mysqli_stmt_prepare($stmt, $query)){
-//   die($text_DatabaseProblem);
-// }
-// mysqli_stmt_bind_param($stmt, "s", $user);
-// Instead of:
-// mysqli_stmt_execute($stmt);
+  //pripojim sa do db
+  $link = mysqli_connect('localhost', 'bwr884kg', 'kE8bsC41Sg', 'bwr884kg');
+	if (!mysqli_set_charset($link, "utf8")) {
+		printf("Error loading character set utf8: %s\n", mysqli_error($link));
+	}
+  //overim, ci boli zadane hodnoty do oboch policok
+  if(!$link){
+    die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
+  }
 
-// get single row result
+/*
+    $query = "SELECT * FROM Users WHERE `LoginStr` = ?";
+    $stmt = mysqli_stmt_init($link);
+    if(!mysqli_stmt_prepare($stmt, $query)){
+      die($text_DatabaseProblem);
+    }else{
+      mysqli_stmt_bind_param($stmt, "s", $user);
+      mysqli_stmt_execute($stmt);
+*/
 function dbGetSingleRowAsArray($stmt)
 {
 /*	Original:
@@ -20,6 +29,12 @@ function dbGetSingleRowAsArray($stmt)
 	$row = mysqli_fetch_assoc($result);
 	return $row;
 */
+/*	Test:
+	$row = array();
+	mysqli_stmt_bind_result($stmt, $row);
+	$row = mysqli_stmt_fetch($stmt);
+*/
+
 	mysqli_stmt_store_result($stmt);
 	if($stmt->num_rows>0)
 	{
@@ -52,6 +67,11 @@ function dbGetAllRowsArrayOfArrays($stmt)
 		$rows[] = $row;
 	}
 	return $rows;
+*/
+/*	Test:
+	$row = array();
+	mysqli_stmt_bind_result($stmt, $row);
+	$row = mysqli_stmt_fetch($stmt);
 */
 
 	mysqli_stmt_store_result($stmt);

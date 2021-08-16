@@ -5,7 +5,7 @@ DirectoryIndex http.php
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /http.php?path=$1 [NC,L,QSA]
+RewriteRule ^(.*)$ http.php?path=$1 [NC,L,QSA]
 
 # redirect msqqli requet to specific db
 php_value mysqli.default_socket /tmp/mariadb55.sock

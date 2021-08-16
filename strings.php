@@ -10,17 +10,23 @@ Trenčín
 <a class="moz-txt-link-abbreviated" href="mailto:'.$my_mail.'">'.$my_mail.'</a>
 M +421 908 184 747';
 
-  $Nadpis = "MC Srdiečko - Jesenná burza 2019";
+  $Nadpis = "MC Srdiečko - Jesenná burza 2021<br/><br/>Vyžiadajte si prihlasovací kód na telefónnom čísle 0904 909 435";
+/*
+<br/><font color=\"red\"> <u>Upozornenie</u><br/> JARNO – LETNÁ BURZA sa pre zhoršenú epidemiologickú situáciu <strong>PREKLADÁ NA NEURČITO</strong>. Termín konania 14.-15. marca je zrušený. NOVÝ TERMÍN nie je určený, možno bude v júni. Predĺžili sme aj vydávanie kódov a nahrávanie vecí do elektronického sytému. </font></br>
+*/
+
   @$smarty->assign('TypBurzy', "Jesenno-zimná burza");
+  #@$smarty->assign('TypBurzy', "Jarno-letná burza");
   @$smarty->assign('TypOsatenia', "jesenno-zimné ošatenie");
+  #@$smarty->assign('TypOsatenia', "jarno-letné ošatenie");
 
   #$Podstata = "Na burze sa predáva jarné a letné detské oblečenie do veľkosti 164 (vrátane), športové a iné potreby.";
   $Podstata = "";
-  $Prihadzovanie = "1.9. - 26.9. 20:00";
-  $Zber = "28.9. 8:00 - 12:00";
-  $Predaj = "28.9. 15:00 - 19:00 a <br/>29.9. 9:00 - 12:00";
-  $Vyzdvihnutie = "29.9. 15:00 - 18:00";
-  $Likvidacia = "29.9. po 18:00";
+  $Prihadzovanie = "10.8. - štvrtok 9.9. 20:00";
+  $Zber = "sobota 11.9. 8:00 - 12:00";
+  $Predaj = "sobota 11.9. 15:00 - 19:00 a <br/>nedeľa 12.9. 9:00 - 12:00";
+  $Vyzdvihnutie = "nedeľa 12.9. 15:00 - 18:00";
+  $Likvidacia = "12.9. po 18:00";
 
   $text_DatabaseProblem = "Problém s databázou...";
   $text_DatabaseProblemPrepare = "Problém s databázou... (prepare)";

@@ -91,6 +91,11 @@ if (count($RequestURI) > 2) echo " RequestURI[2]: " . $RequestURI[2] ;
 echo "-->";
 	}
 
+	if (isset($_SESSION["Chyba"]))
+	{
+		@$smarty->assign('Chyba', $_SESSION["Chyba"]);
+	}
+	
 	##################
 	if(@$RequestURI[0] == 'Pridaj'){
 		$_SESSION["Pridaj"] = true;
