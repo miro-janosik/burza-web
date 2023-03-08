@@ -61,6 +61,7 @@
 														</b> a potvrďte: 
 														<input type="text" name="MazacieSlovo" placeholder="" />
 														<input type="submit" value="Zmazať všetky položky" />
+														<input type="hidden" value="ALL" name="ItemsToDelete" >
 													</center>
                         </form>
                         </p>

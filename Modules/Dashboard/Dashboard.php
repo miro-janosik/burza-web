@@ -435,8 +435,8 @@ echo "-->";
       #######
 			$row['Cena'] = sprintf("%.2f", $row['Cena']);
 			$row['Cena'] = @str_replace('.',',',$row['Cena']);
-			$row['Druh'] = htmlspecialchars($row['Druh']);
-			$row['Popis'] = htmlspecialchars($row['Popis']);
+			$row['Druh'] = htmlspecialchars($row['Druh'] ?? "");
+			$row['Popis'] = htmlspecialchars($row['Popis'] ?? "");
 			$row['Cislo'] = $row['Cislo'];
 			##############
       $Checks[] = $row;
