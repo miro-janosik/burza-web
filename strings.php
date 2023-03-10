@@ -9,8 +9,9 @@ MC Srdiečko
 Trenčín
 <a class="moz-txt-link-abbreviated" href="mailto:'.$my_mail.'">'.$my_mail.'</a>
 M +421 908 184 747';
-
-  $typ_text = "Jarno-letná burza 2023 v KS Záblatie";
+  
+  $miesto = "v KS Záblatie";
+  $typ_text = "Jarno-letná burza 2023 $miesto";
   # $typ = "Jesenno-zimná burza 2023";
   
   $Nadpis = "MC Srdiečko - $typ_text<br/><br/>Vyžiadajte si prihlasovací kód na telefónnom čísle 0904 909 435";
@@ -26,9 +27,9 @@ M +421 908 184 747';
   $Podstata = "";
   $Prihadzovanie = "8.3. - štvrtok 30.3. 20:00";
   $Zber = "sobota 1.4. 8:00 - 12:00";
-  $Predaj = "sobota 1.4. 15:00 - 19:00 a <br/>nedeľa 2.4. 9:00 - 12:00";
-  $Vyzdvihnutie = "nedeľa 2.4. 15:00 - 18:00";
-  $Likvidacia = "nedeľa po 18:00";
+  $Predaj = "sobota 1.4. 14:00 - 19:00 a <br/>nedeľa 2.4. 9:00 - 12:00";
+  $Vyzdvihnutie = "nedeľa 2.4. 14:00 - 16:00";
+  $Likvidacia = "nedeľa po 16:00";
 
   $text_DatabaseProblem = "Problém s databázou...";
   $text_DatabaseProblemPrepare = "Problém s databázou... (prepare)";
@@ -43,6 +44,7 @@ M +421 908 184 747';
   @$smarty->assign('Podstata', $Podstata);
   
   @$smarty->assign('Organizacia', $my_name);
+  @$smarty->assign('Miesto', $miesto);
 
   $Text_GDPR = "
 V zmysle Nariadenia Európskeho parlamentu a Rady (EÚ) 2016/679 z 27.04.2016 o ochrane fyzických osôb 

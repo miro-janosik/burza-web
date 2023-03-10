@@ -12,6 +12,8 @@
 					Pridajte vaše veci na predaj.<br/>
 					Netreba nič odosielať e-mailom, stačí to čo vyplníte na tejto stránke.<br/>
 					<br/>
+					Miesto: {$Miesto}<br/>
+					<br/>
 					<b>Harmonogram burzy</b></p>
 				<div class="table-responsive">
 				{include file="Slices/Harmonogram.tpl"}
