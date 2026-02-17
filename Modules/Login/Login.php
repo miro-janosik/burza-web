@@ -1,10 +1,15 @@
 <?php
+
+	## Zmena v DB:
+	## ALTER TABLE `Users` ADD `VariantName` VARCHAR(255) NOT NULL DEFAULT 'Jesen', ADD `VariantActive` BOOL NOT NULL DEFAULT TRUE;
+
 	if(@empty($RequestURIsingle[1]))
 	{
 		$smarty->display("Login.tpl");
 	}else{
 		$user = $RequestURIsingle[1];
-		$query = "SELECT * FROM Users WHERE `LoginStr` = ?";
+		# Mozem mat viacero rovnakyh uzivatelov s rovnaky kodom, ale len jeden Variant je aktivny
+		$query = "SELECT * FROM Users WHERE `LoginStr` = ? AND `VariantActive` = TRUE";
 		$stmt = mysqli_stmt_init($link);
 		if(!mysqli_stmt_prepare($stmt, $query))
 		{
@@ -14,6 +19,7 @@
 		{
 			mysqli_stmt_bind_param($stmt, "s", $user);
 			mysqli_stmt_execute($stmt);
+
 
 			$row = dbGetSingleRowAsArray($stmt);
 			if ($row) {

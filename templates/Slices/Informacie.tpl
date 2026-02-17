@@ -16,9 +16,10 @@
 					<br/>
 					<b>Harmonogram burzy</b></p>
 				<div class="table-responsive">
-				{include file="Slices/Harmonogram.tpl"}
+					{include file="Slices/Harmonogram.tpl"}
+				</div>
+				<p><a class="btn btn-info btn-lg" href="/Rules">Pravidlá burzy</a></p>
 			</div>
-			<p><a class="btn btn-info btn-lg" href="/Rules">Pravidlá burzy</a></p>
 		</div>
 	</div>
 </div>

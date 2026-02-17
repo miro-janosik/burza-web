@@ -7,8 +7,9 @@
         $code = strtoupper( $code );
     }
 
-    $newURL = "http://burza.mcsrdiecko.sk/Login/" . $code;
+    #$newURL = "http://burza.mcsrdiecko.sk/Login/" . $code;
+    #header('Location: '.$newURL);
+    header('Location: '.$HostnamePort.'Login/'.$code);
 
-    header('Location: '.$newURL);
     die();
 ?>

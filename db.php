@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors',1);
 
   //pripojim sa do db
-  $link = mysqli_connect('localhost', 'bwr884kg', 'kE8bsC41Sg', 'bwr884kg');
+  $link = mysqli_connect('localhost', 'user', 'password', 'dbname');
 	if (!mysqli_set_charset($link, "utf8")) {
 		printf("Error loading character set utf8: %s\n", mysqli_error($link));
 	}

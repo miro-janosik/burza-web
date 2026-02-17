@@ -13,12 +13,11 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-									{include file="Slices/Informacie.tpl"}
-									</div>
-                </div>
-                <!-- /.col-lg-12 -->
+					{include file="Slices/Informacie.tpl"}
+                </div> <!-- /.col-lg-12 -->
             </div>
 
+			{include file="Slices/Varianty.tpl"}
 
 			<!-- Zoznam poloziek -->
             <!-- /.row -->
