@@ -91,8 +91,18 @@ echo "-->";
     header('Location: '.$HostnamePort.'Login');
     die();
   }
+
   ##################################################
   # Tu uz musime byt prihlaseny, alebo sme na /Login
+
+  # pre konkretneho uzivatela prepni rezim do Normalneho
+  if(@$_SESSION["LoggedIn"]){
+    $kod = $_SESSION["LoggedIn"]['info'];
+    if (in_array($kod, array('OR', 'JJ'))) {
+      $Nahadzovanie = 2; #normalna
+    }
+  }
+  
   if($RequestURI[0] == 'Login'){
     require_once 'Modules/Login/Login.php';
   }elseif($RequestURI[0] == 'Dashboard'){

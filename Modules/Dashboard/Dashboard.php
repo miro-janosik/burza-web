@@ -115,7 +115,10 @@ echo "-->";
 	@$smarty->assign('Mail', $_SESSION["LoggedIn"]['Mail']);
 	@$smarty->assign('Kontakt', $_SESSION["LoggedIn"]['Kontakt']);
 	@$smarty->assign('Variant', $_SESSION["LoggedIn"]['VariantName']);
-	
+	@$smarty->assign('VariantNames', $_SESSION["LoggedIn"]['VariantNames']);
+
+	@$smarty->assign('VariantOutputMsg', $_SESSION["LoggedIn"]["VariantOutputMsg"]);
+
 	{
 		# what would be a good next number for item?
 		$userId = $_SESSION["LoggedIn"]['ID'];

@@ -9,7 +9,7 @@
 	}else{
 		$user = $RequestURIsingle[1];
 		# Mozem mat viacero rovnakyh uzivatelov s rovnaky kodom, ale len jeden Variant je aktivny
-		$query = "SELECT * FROM Users WHERE `LoginStr` = ? AND `VariantActive` = TRUE";
+		$query = "SELECT * FROM Users WHERE `LoginStr` = ?";
 		$stmt = mysqli_stmt_init($link);
 		if(!mysqli_stmt_prepare($stmt, $query))
 		{
@@ -20,10 +20,22 @@
 			mysqli_stmt_bind_param($stmt, "s", $user);
 			mysqli_stmt_execute($stmt);
 
+			$rows = dbGetAllRowsArrayOfArrays($stmt);
+			# Pre kazdy variant je jeden zaznam uzivatela
+			$user = null;
+			$variantNames = array();
+			foreach($rows AS $row)
+			{
+				array_push($variantNames, $row['VariantName']);
+				if ($row['VariantActive'])
+				{
+					$user = $row;
+				}
+			}
 
-			$row = dbGetSingleRowAsArray($stmt);
-			if ($row) {
-				$_SESSION["LoggedIn"] = $row;
+			if ($user) {
+				$_SESSION["LoggedIn"] = $user;
+				$_SESSION["LoggedIn"]["VariantNames"] = $variantNames;
 				$_SESSION["Pridaj"] = false;
 				header('Location: '.$HostnamePort.'Dashboard');
 				die();

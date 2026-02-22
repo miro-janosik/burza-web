@@ -2,16 +2,22 @@
     # Volane z Varianty.tpl
     # Form na /VariantCreate odosiela id [change_to_variant]
 
+	$id = htmlspecialchars($_SESSION["LoggedIn"]['ID']);
+	if (empty($id))
+	{
+		die("SaveUser: nie je LoggedIn ID");
+	}
+
     # Idem pre uzivatela zmenit Variant
     # Existuje viacero rovnakych uzivatelov (rovnake meno a kod)
     #  s rozdielnym UserID a VariantName, a iba jeden je VariantActive=True
     # Preto zmenim uzivatelov s tymto kodom tak aby bol aktivny ten spravny
 
-    if (!isset($_GET['variant_name'])) {
+    if (empty($_POST['variant_name'])) {
         die("VariantCreate Parameter nenastaveny!");
     }
 
-    $variant_name = $_GET['variant_name'];
+    $variant_name = $_POST['variant_name'];
     
     ini_set("mbstring.language", "Neutral");
     ini_set("mbstring.internal_encoding", "UTF-8");
@@ -33,15 +39,22 @@
     $stmt = mysqli_stmt_init($link);
     if(!mysqli_stmt_prepare($stmt, $query))
     {
-        die($text_DatabaseProblem);
+        die("Problem s DB: select users variant create");
     }
 
     mysqli_stmt_bind_param($stmt, "s", $loginstr);
-    mysqli_stmt_execute($stmt);
+    if(!mysqli_stmt_execute($stmt))
+    {
+        die("Problem s DB: select users variant create");
+    }
     $rows = dbGetAllRowsArrayOfArrays($stmt);
     foreach($rows AS $row) {
         if($row['VariantName'] == $variant_name) {
-            die("Variant '" . htmlspecialchars($variant_name) . "' uz existuje!");
+
+            @$smarty->assign('VariantOutputMsg', "Variant '" . htmlspecialchars($variant_name) . "' uz existuje!");
+            require_once 'Modules/Dashboard/Dashboard.php';
+            header('Location: '.$HostnamePort.'Dashboard');
+            die();
         }
     }
 
@@ -58,7 +71,10 @@
     }
     
     mysqli_stmt_bind_param($stmt, "ss", $variant_name, $loginstr);
-    mysqli_stmt_execute($stmt);
+    if(!mysqli_stmt_execute($stmt))
+    {
+        die("Problem s DB: variant create - insert user");
+    }
     $new_user_id = mysqli_insert_id($link);
 
     # Copy all items from the current user to the new variant
@@ -70,13 +86,16 @@
         die("mysqli_stmt_prepare error kopirovanie poloziek...");
     }
     mysqli_stmt_bind_param($stmt, "ii", $new_user_id, $_SESSION["LoggedIn"]['ID']);
-    mysqli_stmt_execute($stmt);
+    if(!mysqli_stmt_execute($stmt))
+    {
+        die("Problem s DB: variant create - copy items");
+    }
 
     echo "Variant vytvoreny, prekopirovane!<br><br>";
 
     ##############################################################################
     # aby som mohol pouzit VariantChange.php a nemusim menit kod
-    $_GET['change_to_variant'] = $variant_name; 
+    $_POST['change_to_variant'] = $variant_name; 
     require_once 'Modules/Variants/VariantChange.php';
 
 ?>

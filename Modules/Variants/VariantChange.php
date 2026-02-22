@@ -2,16 +2,22 @@
     # Volane z Varianty.tpl
     # Form na /VariantChange odosiela id [change_to_variant]
 
+	$id = htmlspecialchars($_SESSION["LoggedIn"]['ID']);
+	if (empty($id))
+	{
+		die("SaveUser: nie je LoggedIn ID");
+	}
+
     # Idem pre uzivatela zmenit Variant
     # Existuje viacero rovnakych uzivatelov (rovnake meno a kod)
     #  s rozdielnym UserID a VariantName, a iba jeden je VariantActive=True
     # Preto zmenim uzivatelov s tymto kodom tak aby bol aktivny ten spravny
 
-    if (!isset($_GET['change_to_variant'])) {
+    if (empty($_POST['change_to_variant'])) {
         die("VariantChange Parameter nenastaveny!");
     }
 
-    $variant_name = $_GET['change_to_variant'];
+    $variant_name = $_POST['change_to_variant'];
     
     ini_set("mbstring.language", "Neutral");
     ini_set("mbstring.internal_encoding", "UTF-8");
@@ -38,13 +44,20 @@
 
     $next_user_row = null;
     mysqli_stmt_bind_param($stmt, "s", $loginstr);
-    mysqli_stmt_execute($stmt);
+    if (!mysqli_stmt_execute($stmt))
+    {
+        die("DB Error: select users for variants!");
+    }
+
+    $variantNames = array();
     $rows = dbGetAllRowsArrayOfArrays($stmt);
     foreach($rows AS $row) {
         if($row['VariantName'] == $variant_name) {
             $next_user_row = $row;
             echo "Variant: ". htmlspecialchars($row['VariantName']) . " (ID: " . $row['ID'] . ")<br>";
         }
+
+        array_push($variantNames, $row['VariantName']);
     }
 
     if ($next_user_row == null) {
@@ -61,10 +74,16 @@
         die("mysqli_stmt_prepare error oprava.1...");
     }
     mysqli_stmt_bind_param($stmt, "s", $variant_name);
-    mysqli_stmt_execute($stmt);
+    if (!mysqli_stmt_execute($stmt))
+    {
+        die("DB Error: change variants!");
+    }
 
     $_SESSION["LoggedIn"] = $next_user_row;
+    $_SESSION["LoggedIn"]["VariantNames"] = $variantNames;
     $_SESSION["Pridaj"] = false;
+
+    $_SESSION["LoggedIn"]["VariantOutputMsg"] = "Zmenený variant na ".htmlspecialchars($variant_name);	
 
 	# now load Dashboard just as if nothing happened
 	require_once 'Modules/Dashboard/Dashboard.php';
