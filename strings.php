@@ -10,9 +10,10 @@ Trenčín
 <a class="moz-txt-link-abbreviated" href="mailto:'.$my_mail.'">'.$my_mail.'</a>
 M +421 908 184 747';
   
-  $miesto = "v KS Záblatie";
-  $typ_text = "Jarno-letná burza 2023 $miesto";
-  # $typ = "Jesenno-zimná burza 2023";
+  #$miesto = "v KS Záblatie";
+  $miesto = "v KS Opatová";
+  # $typ_text = "Jarno-letná burza 2025 $miesto";
+  $typ_text = "Jesenno-zimná burza 2025 $miesto";
   
   $Nadpis = "MC Srdiečko - $typ_text<br/><br/>Vyžiadajte si prihlasovací kód na telefónnom čísle 0904 909 435";
 /*
@@ -20,15 +21,15 @@ M +421 908 184 747';
 */
 
   @$smarty->assign('TypBurzy', $typ_text);
-  #@$smarty->assign('TypOsatenia', "jesenno-zimné ošatenie");
-  @$smarty->assign('TypOsatenia', "jarno-letné ošatenie");
+  #@$smarty->assign('TypOsatenia', "jarno-letné ošatenie");
+  @$smarty->assign('TypOsatenia', "jesenno-zimné ošatenie");
 
   #$Podstata = "Na burze sa predáva jarné a letné detské oblečenie do veľkosti 164 (vrátane), športové a iné potreby.";
   $Podstata = "";
-  $Prihadzovanie = "8.3. - štvrtok 30.3. 20:00";
-  $Zber = "sobota 1.4. 8:00 - 12:00";
-  $Predaj = "sobota 1.4. 14:00 - 19:00 a <br/>nedeľa 2.4. 9:00 - 12:00";
-  $Vyzdvihnutie = "nedeľa 2.4. 14:00 - 16:00";
+  $Prihadzovanie = "do štvrtka 23.10. 20:00";
+  $Zber = "sobota 25.10. 8:00 - 12:00";
+  $Predaj = "sobota 25.10. 14:00 - 19:00 a <br/>nedeľa 26.10. 9:00 - 12:00";
+  $Vyzdvihnutie = "nedeľa 26.10. 14:00 - 16:00";
   $Likvidacia = "nedeľa po 16:00";
 
   $text_DatabaseProblem = "Problém s databázou...";

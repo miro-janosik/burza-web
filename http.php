@@ -7,9 +7,9 @@
   #########################
   session_start();
   ###########################
-  $Nahadzovanie = 2; #normalna
+  #$Nahadzovanie = 2; #normalna
   #$Nahadzovanie = 3; #tehotenska
-  # $Nahadzovanie = 0; #vypnute
+  $Nahadzovanie = 1; #vypnute
   ###
   $IDBurzy = 15;
 
@@ -118,6 +118,10 @@ echo "-->";
     require_once 'Modules/Stitky.php';
   }elseif($RequestURI[0] == 'SaveUser'){
     require_once 'Modules/SaveUser.php';
+  }elseif($RequestURI[0] == 'VariantChange'){
+    require_once 'Modules/Variants/VariantChange.php';
+  }elseif($RequestURI[0] == 'VariantCreate'){
+    require_once 'Modules/Variants/VariantCreate.php';
   }else{
     header('Location: '.$HostnamePort.'Dashboard');
   }

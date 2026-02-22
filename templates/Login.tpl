@@ -35,43 +35,41 @@
 <body>
 
     <div class="container">
-				<div class="row">
-					{include file="Slices/Informacie.tpl"}
-				</div>
         <div class="row">
-            <div class="col-md-4 col-md-offset-4">
+            {include file="Slices/Informacie.tpl"}
+        </div>
+        <div class="row">
+        <div class="col-md-4 col-md-offset-4">
 {if isset($PrihlasenieZlyhalo)}
-                <div class="login-panel panel panel-danger">
+            <div class="login-panel panel panel-danger">
 {else}
-                <div class="login-panel panel panel-default">
+            <div class="login-panel panel panel-default">
 {/if}
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
 {if isset($PrihlasenieZlyhalo)}
-													Prihlásenie zlyhalo, pravdepodobne nesprávny kód...
+                        Prihlásenie zlyhalo, pravdepodobne nesprávny kód...
 {else}
-													Prihlasenie nutne!
+                        Prihlasenie nutne!
 {/if}
-												</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p><b>{$Nadpis}</b><br /><br />
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <p><b>{$Nadpis}</b><br /><br />
 
                         <!-- Na prihlasenie sa pouzite poskytnutu prihlasovaciu linku! -->
-                        
+                            
                         <form action="/LoginCode/">
                             <center>Prihlasovací kód: <input type="text" name="code" placeholder="AB-CDE" /></center>
                             <center><input type="submit" value="Prihlásiť" /></center>
                         
                         </form>
-                        </p>
-                    </div>
+                    </p>
+                </div>
 
-                    <div class="panel-body">
-											{$GDPR}
-											<br/> <br/>
-										</div>
-
+                <div class="panel-body">
+                    {$GDPR}
+                    <br/> <br/>
                 </div>
             </div>
         </div>

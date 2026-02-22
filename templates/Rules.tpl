@@ -120,7 +120,7 @@ Ak nebudú predávané veci označené spôsobom, ktorý spĺňa hore uvedené p
 <li>odmenu vo výške 10% z predaných artiklov </li>
 <li>manipulačný poplatok :</li> 
 
-<li>0,10 €  za každý kus ,ktorý prinesiete na predaj v cene do 15,00 €.</li>
+<li>0,15 €  za každý kus ,ktorý prinesiete na predaj v cene do 15,00 €. <B> - Zmena od 2024 - z 10 centov na 15</B></li>
 
 <li>1,00 € za každý kus ,ktorý prinesiete na predaj v cene nad 15,00 € </li>
  
