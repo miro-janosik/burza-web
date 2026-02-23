@@ -23,6 +23,7 @@
                         </form>
                     </div> 
                     
+                    {if ! in_array("Jar", $VariantNames)}
                     <div class="panel-body"> 
                         <b>Vytvoriť variant:</b> <br/>
                         Vytvorí samostatnú kópiu aktuálneho zoznamu položiek s novým menom variantu.<br/>
@@ -33,6 +34,7 @@
                             <button type="submit" class="btn btn-primary">Vytvor</button>
                         </form>
                     </div>
+                    {/if}
 
 
                     <div class="panel-body"> 

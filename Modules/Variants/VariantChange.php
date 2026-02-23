@@ -67,13 +67,13 @@
     ##############################################################################
     echo "Zmena varianty... na '". htmlspecialchars($variant_name) ."'<br><br>";
     
-    $query = "UPDATE `Users` SET `VariantActive` = CASE WHEN `VariantName` = ? THEN TRUE ELSE FALSE END";
+    $query = "UPDATE `Users` SET `VariantActive` = CASE WHEN `VariantName` = ? THEN TRUE ELSE FALSE END WHERE `LoginStr` = ?";
 
     $stmt = mysqli_stmt_init($link);
     if(!mysqli_stmt_prepare($stmt, $query)){
         die("mysqli_stmt_prepare error oprava.1...");
     }
-    mysqli_stmt_bind_param($stmt, "s", $variant_name);
+    mysqli_stmt_bind_param($stmt, "ss", $variant_name, $loginstr);
     if (!mysqli_stmt_execute($stmt))
     {
         die("DB Error: change variants!");
